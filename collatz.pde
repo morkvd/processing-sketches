@@ -1,12 +1,12 @@
 void setup() {
-  size(1200,900);
+  size(1920,1080);
   colorMode(HSB, 100);
   background(100);
   
 }
 
-void draw() {
-  int limit = 10000;
+void draw() { 
+  int limit = floor(random(1000, 100000));
   randomBlendMode();
   background(
     floor(random(0, 100)),
@@ -26,7 +26,7 @@ void draw() {
     
     do {
       sequence.append(n);
-      n = collatz(n, 2, 3);
+      n = collatz(n);
 
     } while(n != 1);
     sequence.append(1);
@@ -56,15 +56,15 @@ void draw() {
   }
   
   println("done");
-  
+  saveFrame("collatz-######.png");
 }
 
 
-int collatz(int n, int d, int m) {
-  if (n % d == 0) {
-    return n / d;  
+int collatz(int n) {
+  if (n % 2 == 0) {
+    return n / 2;  
   } else {
-    return (n * m + 1)/2;
+    return (n * 3 + 1)/2;
   }
 }
 
